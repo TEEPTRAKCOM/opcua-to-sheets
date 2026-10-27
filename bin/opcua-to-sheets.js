@@ -43,8 +43,8 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
   const cmd = args._[0];
 
-  if (!cmd || args.help || cmd === 'help') { console.log(HELP); return; }
   if (args.version || cmd === 'version') { console.log(pkg.version); return; }
+  if (!cmd || args.help || cmd === 'help') { console.log(HELP); return; }
 
   if (cmd === 'init') {
     const target = path.resolve(args._[1] || 'config.yaml');
