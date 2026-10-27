@@ -1,0 +1,53 @@
+{
+  "name": "opcua-to-sheets",
+  "version": "0.1.0",
+  "description": "Log OPC UA machine data into a Google Sheet in 10 minutes. Read-only, open source, no telemetry.",
+  "license": "MIT",
+  "author": "TEEPTRAK (https://teeptrak.com)",
+  "homepage": "https://partners.teeptrak.com/en/opc-ua-to-google-sheets/",
+  "keywords": [
+    "opc-ua",
+    "opcua",
+    "plc",
+    "iiot",
+    "google-sheets",
+    "oee",
+    "industry-4.0",
+    "scada",
+    "manufacturing"
+  ],
+  "type": "commonjs",
+  "bin": {
+    "opcua-to-sheets": "bin/opcua-to-sheets.js"
+  },
+  "main": "src/index.js",
+  "files": [
+    "bin",
+    "src",
+    "examples",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "test": "node --test --test-concurrency=1 test/*.test.js",
+    "demo-server": "node test/server.js 4840"
+  },
+  "dependencies": {
+    "google-auth-library": "^11.2.0",
+    "node-opcua-client": "^2.150.0",
+    "yaml": "^2.6.0"
+  },
+  "devDependencies": {
+    "node-opcua-server": "^2.150.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TEEPTRAKCOM/opcua-to-sheets.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TEEPTRAKCOM/opcua-to-sheets/issues"
+  }
+}
