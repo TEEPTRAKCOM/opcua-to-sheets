@@ -1,0 +1,18 @@
+# systemd service: copy to /etc/systemd/system/, adjust paths and user, then
+#   sudo systemctl daemon-reload && sudo systemctl enable --now opcua-to-sheets
+[Unit]
+Description=opcua-to-sheets machine data logger
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=opcua
+WorkingDirectory=/opt/opcua-to-sheets
+# Environment=OPCUA_PASSWORD=...   (better: EnvironmentFile=/etc/opcua-to-sheets.env, readable by this user only)
+# Path of the installed command: run `which opcua-to-sheets` and paste it below.
+ExecStart=/usr/local/bin/opcua-to-sheets run --config /opt/opcua-to-sheets/config.yaml
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

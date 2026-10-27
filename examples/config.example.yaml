@@ -1,0 +1,20 @@
+# opcua-to-sheets configuration
+# Every value marked ${NAME} is read from an environment variable, so passwords stay out of this file.
+
+sampleSeconds: 10      # read every machine every 10 s
+flushSeconds: 30       # write to Google every 30 s (one write per machine). Keep machines x (60 / flushSeconds) under 50.
+
+sheet:
+  spreadsheetId: "PASTE-THE-ID-FROM-THE-SHEET-URL"   # https://docs.google.com/spreadsheets/d/<this part>/edit
+  credentials: "./service-account.json"             # Google service account key; share the sheet with its e-mail (Editor)
+
+machines:
+  - name: "Press 01"                      # becomes the tab name in the sheet
+    endpoint: "opc.tcp://192.168.0.10:4840"
+    # user: "reader"                      # use a READ-ONLY OPC UA user if your server needs one
+    # password: "${OPCUA_PASSWORD}"
+    # security: { mode: SignAndEncrypt, policy: Basic256Sha256 }
+    tags:
+      - { name: "Running",     nodeId: "ns=3;s=\"DB_OEE\".\"Running\"" }
+      - { name: "PartCounter", nodeId: "ns=3;s=\"DB_OEE\".\"PartCounter\"" }
+      - { name: "Scrap",       nodeId: "ns=3;s=\"DB_OEE\".\"ScrapCounter\"" }
